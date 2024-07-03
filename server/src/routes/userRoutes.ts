@@ -3,6 +3,7 @@ import { getAllOrdersByUserId, createOrderForUser } from "../controllers/userCon
 import { verifyUser } from "../middlewares/authMiddleware";
 
 const router = Router();
+
 router.get("/orders", verifyUser, getAllOrdersByUserId);
 router.post("/order", verifyUser, createOrderForUser);
 
