@@ -39,3 +39,41 @@ export const loginUser = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Failed to login user" });
   }
 };
+
+/**
+ * @name registerUser
+ * @description receives user data, validates signup token and created a new user.
+ * @param {Request} req body {token, email, firstName, lastName, password}
+ * @param {Response} res
+ */
+
+export const registerUser = async (req: Request, res: Response) => {
+  const { token, email, firstName, lastName, password } = req.body;
+
+  try {
+    // todo: fix any type
+    const decoded: any = jwt.verify(token, process.env.JWT_SECRET!);
+    const decodedEmail = decoded.email;
+    if (decodedEmail.toLowerCase() !== email.toLowerCase()) {
+      res.status(500).json({ error: "Invalid token or email, failed to register user" });
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = await prisma.user.create({
+      data: {
+        firstName,
+        lastName,
+        email: decodedEmail,
+        password: hashedPassword,
+        role: "USER",
+        validated: true,
+      },
+    });
+    await createLog("USER", "A new USER has signed up on the platform.");
+    const jwtToken = jwt.sign({ userId: newUser.id, role: newUser.role }, process.env.JWT_SECRET!, { expiresIn: "1d" });
+    res.status(201).json({ token: jwtToken });
+  } catch (error) {
+    await createLog("ERROR", "An ERROR occured during signup.");
+    res.status(500).json({ error: "Failed to register user" });
+  }
+};
