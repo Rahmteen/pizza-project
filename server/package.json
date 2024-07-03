@@ -4,6 +4,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
+    "seed": "ts-node prisma/seed.ts",
     "build": "tsc"
   },
   "dependencies": {    
