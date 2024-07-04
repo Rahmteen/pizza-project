@@ -24,6 +24,7 @@ export const loginModel = createModel<RootModel>()({
   effects: (dispatch) => ({
     async handleLogin([email, password]: [string, string]) {
       try {
+        this.setIsLoading(true);
         const res = await login(email, password);
         if (res.data) {
           this.setIsLoading(false);

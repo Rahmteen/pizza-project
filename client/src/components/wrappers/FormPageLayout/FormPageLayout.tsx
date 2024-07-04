@@ -25,8 +25,8 @@ const FormPageLayout = ({ children }: FormPageLayoutProps): React.ReactNode => {
           rounded="3xl"
           bg="white"
           py={{ base: 6, lg: 10 }}
-          px={{ base: 6, lg: 12 }}
-          gap={5}
+          px={{ base: 8, lg: 12 }}
+          gap={{ base: 4, lg: 5 }}
         >
           {children}
         </Stack>

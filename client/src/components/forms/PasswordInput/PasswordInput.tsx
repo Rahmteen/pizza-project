@@ -1,4 +1,4 @@
-import { InputGroup, Input, InputRightElement, Button } from "@chakra-ui/react";
+import { InputGroup, Input, InputRightElement, Button, Text } from "@chakra-ui/react";
 
 interface PasswordInputProps {
   isShowing: boolean;
@@ -34,9 +34,17 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
         type={isShowing ? "text" : "password"}
         placeholder={placeholder}
       />
-      <InputRightElement width="4.5rem">
-        <Button h="1.75rem" size="sm" onClick={setIsShowing}>
-          {isShowing ? "Hide" : "Show"}
+      <InputRightElement width="3rem">
+        <Button
+          minW="unset"
+          px={0}
+          bg="transparent"
+          _hover={{ bg: "transparent" }}
+          h="1.75rem"
+          size="sm"
+          onClick={setIsShowing}
+        >
+          {isShowing ? <Text as="i" className="fas fa-eye-slash" /> : <Text as="i" className="fas fa-eye" />}
         </Button>
       </InputRightElement>
     </InputGroup>

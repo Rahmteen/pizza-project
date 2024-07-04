@@ -8,7 +8,7 @@ import { Text } from "@chakra-ui/react";
  */
 
 const LoginTitle: React.FC = (): React.ReactNode => {
-  return <Text fontFamily="bricolage" fontWeight={700} fontSize={"2xl"} children={"Login"} />;
+  return <Text fontFamily="bricolage" fontWeight={700} fontSize={{ base: "21px", lg: "3xl" }} children={"Login"} />;
 };
 
 export default LoginTitle;

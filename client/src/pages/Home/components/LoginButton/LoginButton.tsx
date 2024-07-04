@@ -14,12 +14,16 @@ const LoginButton: React.FC = (): React.ReactNode => {
   const dispatch = useDispatch<Dispatch>();
   const email: string = useSelector(store.select.loginModel.selectEmail);
   const password: string = useSelector(store.select.loginModel.selectPassword);
+  const isLoading: boolean = useSelector(store.select.loginModel.selectIsLoading);
+  const isError: boolean = useSelector(store.select.loginModel.selectIsError);
   return (
     <Button
-      isDisabled={!email?.length || !password.length}
+      colorScheme={isError ? "red" : "gray"}
+      isLoading={isLoading}
+      isDisabled={!email?.length || !password.length || isError}
       onClick={() => dispatch.loginModel.handleLogin([email, password])}
     >
-      Login
+      {isError ? "Login Error" : "Login"}
     </Button>
   );
 };
