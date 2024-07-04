@@ -119,3 +119,14 @@ export interface GridButton {
   icon: string;
   title: string;
 }
+
+/**
+ * @name TokenModelState
+ * @description token model type
+ * @returns {Interface}
+ */
+
+export interface TokenModelState {
+  token: string;
+  isAdmin: boolean;
+}

@@ -8,7 +8,7 @@ const persistConfig = {
   key: "root",
   storage,
   version: 2,
-//   whitelist: [], ** todo: handle token presist
+  whitelist: ["tokenModel"],
 };
 
 export const store = init<RootModel>({

@@ -1,4 +1,4 @@
-import { DashboardState, PizzaOrder } from "@/store/types";
+import { DashboardState, PizzaOrder, TokenModelState } from "@/store/types";
 
 /**
  * @name defaultLoginModelState
@@ -56,4 +56,15 @@ export const defaultDashboardModelState = {
   isConfirmingOrder: false,
   chatlog: [],
   currentMessage: "",
+};
+
+/**
+ * @name defaultTokenModelState
+ * @description default state for token model
+ * @return {TokenModelState}
+ */
+
+export const defaultTokenModelState = {
+  token: "",
+  isAdmin: false,
 };
