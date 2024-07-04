@@ -5,10 +5,10 @@ import Home from "@/pages/Home/Home";
 import Admin from "@/pages/Admin/Admin";
 import NotFound from "@/pages/NotFound/NotFound";
 import Dashboard from "@/pages/Dashboard/Dashboard";
-import Register from "./pages/Register/Register";
+import Register from "@/pages/Register/Register";
 
 // wrappers
-// ...todo
+import TokenWrapper from "@/components/wrappers/TokenWrapper/TokenWrapper";
 
 /**
  * @name App
@@ -20,11 +20,13 @@ import Register from "./pages/Register/Register";
 const App: React.FC = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/admin" element={<Admin />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="*" element={<NotFound />} />
+      <Route element={<TokenWrapper />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
     </Routes>
   );
 };
