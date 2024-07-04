@@ -1,4 +1,6 @@
 import {
+  AdminModelState,
+  AdminState,
   DashboardModelState,
   DashboardState,
   LoginModelState,
@@ -74,4 +76,17 @@ export const defaultDashboardModelState: DashboardModelState = {
 export const defaultTokenModelState: TokenModelState = {
   token: "",
   isAdmin: false,
+};
+
+/**
+ * @name defaultAdminModelState
+ * @description default state for token model
+ * @return {TokenModelState}
+ */
+
+export const defaultAdminModelState: AdminModelState = {
+  email: "",
+  allOrders: [],
+  allLogs: [],
+  currentState: AdminState.DEFAULT,
 };

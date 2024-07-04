@@ -130,3 +130,30 @@ export interface TokenModelState {
   token: string;
   isAdmin: boolean;
 }
+
+/**
+ * @name AdminModelState
+ * @description admin model type
+ * @returns {Interface}
+ */
+
+export interface AdminModelState {
+  email: string;
+  allOrders: Order[];
+  allLogs: Log[];
+  currentState: AdminState;
+}
+
+/**
+ * @name AdminState
+ * @description admin page state for screens
+ * @return {Interface}
+ */
+
+export enum AdminState {
+  DEFAULT = 0,
+  ORDERS,
+  LOGS,
+  INVITE,
+  INVITE_SUCCESS,
+}
