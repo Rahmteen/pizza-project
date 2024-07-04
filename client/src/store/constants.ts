@@ -1,12 +1,19 @@
-import { DashboardState, PizzaOrder, TokenModelState } from "@/store/types";
+import {
+  DashboardModelState,
+  DashboardState,
+  LoginModelState,
+  PizzaOrder,
+  RegisterModelState,
+  TokenModelState,
+} from "@/store/types";
 
 /**
  * @name defaultLoginModelState
  * @description default state for login model
- * @return {Interface}
+ * @return {LoginModelState}
  */
 
-export const defaultLoginModelState = {
+export const defaultLoginModelState: LoginModelState = {
   email: "",
   password: "",
   isLoading: false,
@@ -17,10 +24,10 @@ export const defaultLoginModelState = {
 /**
  * @name defaultRegisterModelState
  * @description default state for register model
- * @return {Interface}
+ * @return {RegisterModelState}
  */
 
-export const defaultRegisterModelState = {
+export const defaultRegisterModelState: RegisterModelState = {
   firstName: "",
   lastName: "",
   password: "",
@@ -35,10 +42,10 @@ export const defaultRegisterModelState = {
 /**
  * @name defaultDashboardModelState
  * @description default state for dashboard model
- * @return {Interface}
+ * @return {DashboardModelState}
  */
 
-export const defaultDashboardModelState = {
+export const defaultDashboardModelState: DashboardModelState = {
   currentState: DashboardState.DEFAULT,
   pastOrders: [],
   newOrder: {
@@ -64,7 +71,7 @@ export const defaultDashboardModelState = {
  * @return {TokenModelState}
  */
 
-export const defaultTokenModelState = {
+export const defaultTokenModelState: TokenModelState = {
   token: "",
   isAdmin: false,
 };
