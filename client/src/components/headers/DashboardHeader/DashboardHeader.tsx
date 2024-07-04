@@ -1,4 +1,5 @@
 import { Divider, Flex, Stack, Text } from "@chakra-ui/react";
+import LogoutButton from "@/components/buttons/LogoutButton/LogoutButton";
 
 interface DashboardHeaderProps {
   subtitle: string;
@@ -40,6 +41,9 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
               {title}
             </Text>
           </Stack>
+        </Flex>
+        <Flex mb={{ base: 3, lg: -7 }} alignItems={"basline"}>
+          <LogoutButton />
         </Flex>
       </Flex>
       <Divider mb={6} borderColor="black" />
