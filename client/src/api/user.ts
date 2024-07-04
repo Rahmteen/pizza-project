@@ -1,8 +1,8 @@
 import axios from "axios";
 import { PizzaOrder } from "@/store/types";
 
-const USER_CREATE_NEW_ORDER_ENDPOINT = "http://localhost:3000/user/orders";
-const USER_GET_PAST_ORDERS_ENDPOINT = "http://localhost:3000/user/order";
+const USER_CREATE_NEW_ORDER_ENDPOINT = "http://localhost:3000/user/order";
+const USER_GET_PAST_ORDERS_ENDPOINT = "http://localhost:3000/user/orders";
 
 /**
  * @name createUserOrder
