@@ -5,6 +5,7 @@ import { DashboardState } from "@/store/types";
 
 import OrderHeader from "@/components/headers/OrderHeader/OrderHeader";
 import OrderItem from "@/components/data/OrderItem/OrderItem";
+import { useEffect } from "react";
 
 /**
  * @name DashboardPastOrdersForm
@@ -17,7 +18,11 @@ import OrderItem from "@/components/data/OrderItem/OrderItem";
 
 const DashboardPastOrders: React.FC = (): React.ReactNode => {
   const dispatch = useDispatch<Dispatch>();
+  const token = useSelector(store.select.tokenModel.selectToken);
   const pastOrders = useSelector(store.select.dashboardModel.selectPastOrders);
+  useEffect(() => {
+    if (!pastOrders?.length) dispatch.dashboardModel.getPastUserOrders(token);
+  }, []);
   return (
     <Stack gap={2}>
       <Stack mt={-2} mb={5} gap={4}>
