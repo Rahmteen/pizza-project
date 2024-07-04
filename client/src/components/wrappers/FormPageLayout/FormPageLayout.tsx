@@ -17,7 +17,7 @@ interface FormPageLayoutProps {
 
 const FormPageLayout = ({ children }: FormPageLayoutProps): React.ReactNode => {
   return (
-    <SimpleGrid minH="100vh" columns={{ base: 1, lg: 2 }}>
+    <SimpleGrid minH="100vh" columns={{ base: 1, lg: 2 }} bg='p.400'>
       <GridItem px={{ base: 6, lg: 32 }} as={Flex} alignItems={"center"} colSpan={1}>
         <Stack
           className="box-shadow-1"

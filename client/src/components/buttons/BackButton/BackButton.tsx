@@ -19,7 +19,7 @@ const BackButton: React.FC<BackButtonProps> = ({ onClick }: BackButtonProps): Re
       onClick={onClick}
       leftIcon={<Text as="i" fontSize="xs" className="fa-solid fa-arrow-left" />}
       size="sm"
-      variant={"outline"}
+      colorScheme="blackAlpha"
       maxW="fit-content"
     >
       <Text fontFamily={"bricolage"}>back home</Text>

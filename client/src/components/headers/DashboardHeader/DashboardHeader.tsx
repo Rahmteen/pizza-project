@@ -32,12 +32,12 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
         minW="100%"
       >
         <Flex>
-          <Text mr={6} as="i" fontSize={"75px"} className={icon} />
+          <Text mr={5} as="i" fontSize={"75px"} className={icon} />
           <Stack mb={4} gap={0}>
-            <Text fontSize={"md"} fontWeight={300} fontFamily={"bricolage"}>
+            <Text color="black" fontSize={"sm"} fontWeight={400} fontFamily={"inter"}>
               {subtitle}
             </Text>
-            <Text fontFamily={"bricolage"} fontWeight={500} fontSize={"4xl"}>
+            <Text mt={{ base: -1, lg: -1 }} fontFamily={"bricolage"} fontWeight={600} color="black" fontSize={"4xl"}>
               {title}
             </Text>
           </Stack>
@@ -46,7 +46,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
           <LogoutButton />
         </Flex>
       </Flex>
-      <Divider mb={6} borderColor="black" />
+      <Divider mb={6} rounded={"2xl"} border="solid 2px" borderColor="black" />
     </>
   );
 };

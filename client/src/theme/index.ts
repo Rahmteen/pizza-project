@@ -24,7 +24,6 @@ export const defaultTheme = extendTheme({
         minHeight: "100vh",
         minWidth: "100vw",
         overflowX: "hidden",
-        background: "p.400",
         overscrollBehavior: "none !important",
       },
       ".box-shadow-1": {

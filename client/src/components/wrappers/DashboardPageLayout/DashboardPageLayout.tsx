@@ -18,7 +18,7 @@ const DashboardPageLayout: React.FC<DashboardPageLayoutProps> = ({
   children,
 }: DashboardPageLayoutProps): React.ReactNode => {
   return (
-    <Container px={{ base: 8, lg: 0 }} minW="100vw" minH="100vh">
+    <Container px={{ base: 8, lg: 0 }} minW="100vw" minH="100vh" bg='p.100'>
       <Stack py={{ base: 10, lg: 24 }} mx="auto" maxW={{ base: "auto", lg: "5xl" }}>
         {children}
       </Stack>

@@ -36,10 +36,10 @@ const PizzaSizeRadioGroup: React.FC<PizzaSizeRadioGroupProps> = ({
         }}
         value={value}
       >
-        <Flex justifyContent={"space-between"}>
-          <Radio value="SM">Small</Radio>
-          <Radio value="MD">Medium</Radio>
-          <Radio value="LG">Large</Radio>
+        <Flex pr={2} justifyContent={"space-between"}>
+          <Radio rounded="none" borderColor="gray.500"  value="SM">Small</Radio>
+          <Radio rounded="none" borderColor="gray.500"  value="MD">Medium</Radio>
+          <Radio rounded="none" borderColor="gray.500"  value="LG">Large</Radio>
         </Flex>
       </RadioGroup>
     </Flex>

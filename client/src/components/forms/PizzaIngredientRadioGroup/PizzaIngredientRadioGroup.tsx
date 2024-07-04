@@ -37,10 +37,16 @@ const PizzaIngredientRadioGroup: React.FC<PizzaIngredientRadioGroupProps> = ({
         }}
         value={value.toString()}
       >
-        <Flex justifyContent={"space-between"}>
-          <Radio value="0">None</Radio>
-          <Radio value="1">Regular</Radio>
-          <Radio value="2">Extra</Radio>
+        <Flex pr={2.5} justifyContent={"space-between"}>
+          <Radio rounded="none" borderColor="gray.500" value="0">
+            None
+          </Radio>
+          <Radio rounded="none" borderColor="gray.500" value="1">
+            Regular
+          </Radio>
+          <Radio rounded="none" borderColor="gray.500" value="2">
+            Extra
+          </Radio>
         </Flex>
       </RadioGroup>
     </Flex>

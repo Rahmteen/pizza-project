@@ -28,15 +28,16 @@ const LargeGridButton: React.FC<LargeGridButtonProps> = ({
 }: LargeGridButtonProps): React.ReactNode => {
   return (
     <GridItem
-      rounded="lg"
+      rounded="xl"
       cursor={"pointer"}
       alignItems={"center"}
       justifyContent={"center"}
       as={Stack}
       tabIndex={0}
-      _hover={{ opacity: "90%" }}
+      _hover={{ opacity: "80%" }}
       transition={"0.3s all ease-in-out"}
       bg={color}
+      className="box-shadow-1"
       aspectRatio={1}
       onClick={onClick}
     >

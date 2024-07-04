@@ -14,11 +14,10 @@ const LogoutButton: React.FC = (): React.ReactNode => {
   return (
     <Button
       onClick={() => dispatch.tokenModel.clearState()}
-      color="blackAlpha.700"
+      colorScheme="blackAlpha"
       rounded="md"
       size="sm"
       leftIcon={<Text as="i" fontSize={"xs"} className="fa-sharp fa-solid fa-arrow-left-from-bracket" />}
-      variant="outline"
     >
       Sign Out
     </Button>

@@ -1,8 +1,9 @@
 import { DateTime } from "luxon";
-import { Badge, Flex, GridItem, SimpleGrid, Stack, Text } from "@chakra-ui/react";
+import { Badge, Box, Flex, GridItem, SimpleGrid, Stack, Text } from "@chakra-ui/react";
 import { Order } from "@/store/types";
 import { parsePizzaIngredientValue } from "@/utils/parsePizzaIngredientValue";
 import { parsePizzaSize } from "@/utils/parsePizzaSize";
+import { parsePortionBadgeColor } from "@/utils/parsePortionBadgeColor";
 
 interface OrderItemProps {
   order: Order;
@@ -24,7 +25,7 @@ const OrderItem: React.FC<OrderItemProps> = ({ order }: OrderItemProps): React.R
   return (
     <SimpleGrid px={5} py={5} columns={7} bg="blackAlpha.50">
       <GridItem as={Flex} alignItems={"start"} colSpan={2}>
-        <Text fontFamily={"bricolage"}>{parsePizzaSize(pizzaSize)}</Text>
+        <Text textTransform={'uppercase'} fontWeight={700} fontFamily={"bricolage"}>{parsePizzaSize(pizzaSize)}</Text>
       </GridItem>
       <GridItem colSpan={3}>
         <Stack>
@@ -32,7 +33,9 @@ const OrderItem: React.FC<OrderItemProps> = ({ order }: OrderItemProps): React.R
             if (item !== "size")
               return (
                 <Flex direction={{ base: "column", lg: "row" }} alignItems={{ base: "start", lg: "center" }} gap={2}>
-                  <Badge colorScheme="green">{parsePizzaIngredientValue(value)}</Badge>
+                  <Badge textAlign={'center'} minW="10ch" colorScheme={parsePortionBadgeColor(parsePizzaIngredientValue(value) || "")}>
+                    {parsePizzaIngredientValue(value)}
+                  </Badge>
                   <Text fontWeight={600} minW={{ lg: "10ch" }} fontFamily={"bricolage"}>
                     {item}
                   </Text>
