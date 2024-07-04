@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
 import FormPageLayout from "@/components/wrappers/FormPageLayout/FormPageLayout";
 import RegisterTitle from "@/pages/Register/components/RegisterTitle/RegisterTitle";
 import RegisterForm from "@/pages/Register/components/RegisterForm/RegisterForm";
 import RegisterButton from "@/pages/Register/components/RegisterButton/RegisterButton";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import RegisterFooter from "@/pages/Register/components/RegisterFooter/RegisterFooter";
 
 /**
  * @name Register
@@ -30,6 +32,7 @@ const Register = () => {
       <RegisterTitle />
       <RegisterForm />
       {localToken && <RegisterButton token={localToken} />}
+      <RegisterFooter />
     </FormPageLayout>
   );
 };

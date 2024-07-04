@@ -38,14 +38,22 @@ export const registerModel = createModel<RootModel>()({
   effects: (dispatch) => ({
     async handleSignup([firstName, lastName, password, email, token]: [string, string, string, string, string]) {
       try {
+        this.setIsLoading(true);
         const res = await register(firstName, lastName, password, email, token);
         if (res?.data?.token) {
           const token = res.data?.token;
           dispatch.tokenModel.setIsAdmin(false);
           dispatch.tokenModel.setToken(token);
+          this.setIsLoading(false);
           this.clearState();
         }
-      } catch {}
+      } catch (error) {
+        this.setIsLoading(false);
+        this.setIsError(true);
+        setTimeout(() => {
+          this.setIsError(false);
+        }, 2000);
+      }
     },
   }),
 });
