@@ -2,7 +2,8 @@ import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { createLog } from "../services/logService";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
+import { DecodedRegistrationToken } from "../types";
 
 const prisma = new PrismaClient();
 
@@ -51,12 +52,16 @@ export const registerUser = async (req: Request, res: Response) => {
   const { token, email, firstName, lastName, password } = req.body;
 
   try {
-    // todo: fix any type
-    const decoded: any = jwt.verify(token, process.env.JWT_SECRET!);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload & DecodedRegistrationToken;
     const decodedEmail = decoded.email;
+
     if (decodedEmail.toLowerCase() !== email.toLowerCase()) {
       res.status(500).json({ error: "Invalid token or email, failed to register user" });
     }
+    if (!email || !firstName || !lastName || !password) {
+      res.status(500).json({ error: "Incomplete user data, failed to register user" });
+    }
+    
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = await prisma.user.create({

@@ -12,8 +12,9 @@ const prisma = new PrismaClient();
  * @param {Response} res
  */
 
-export const getAllOrdersByUserId = async (req: AuthRequest, res: Response) => {
-  const userId = req.user.id;
+export const getAllOrdersByUserId = async (req: Request, res: Response) => {
+  const { user } = req as AuthRequest;
+  const userId = user?.id;
 
   try {
     const orders = await prisma.order.findMany({
@@ -34,8 +35,9 @@ export const getAllOrdersByUserId = async (req: AuthRequest, res: Response) => {
  * @param {Response} res
  */
 
-export const createOrderForUser = async (req: AuthRequest, res: Response) => {
-  const userId = req.user.id;
+export const createOrderForUser = async (req: Request, res: Response) => {
+  const { user } = req as AuthRequest;
+  const userId = user?.id;
   const { cart } = req.body;
 
   try {

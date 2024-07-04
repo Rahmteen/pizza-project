@@ -9,7 +9,6 @@ export interface User {
   createdAt: Date;
   role: string;
   validated: Boolean;
-  orders: Order[];
 }
 
 export interface Order {
@@ -49,6 +48,9 @@ export const DEFAULT_PIZZA_ORDER: PizzaOrder = {
 };
 
 export interface AuthRequest extends Request {
-  // * todo
-  user?: any;
+  user: User;
+}
+
+export interface DecodedRegistrationToken {
+  email: string;
 }

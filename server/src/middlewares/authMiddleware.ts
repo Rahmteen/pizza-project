@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import { Response, NextFunction } from "express";
-import jwt from "jsonwebtoken";
-import { AuthRequest } from "../types";
+import { Response, NextFunction, RequestHandler } from "express";
+import jwt, { JwtPayload } from "jsonwebtoken";
+import { AuthRequest, User } from "../types";
 
 const prisma = new PrismaClient();
 
@@ -13,7 +13,7 @@ const prisma = new PrismaClient();
  * @param {NextFunction} next
  */
 
-export const verifyAdmin = (req: AuthRequest, res: Response, next: NextFunction) => {
+export const verifyAdmin: RequestHandler = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
@@ -23,10 +23,10 @@ export const verifyAdmin = (req: AuthRequest, res: Response, next: NextFunction)
   const token = authHeader.split(" ")[1];
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!);
-    req.user = decoded;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload & { role: string };
+    (req as AuthRequest).user = decoded as User;
 
-    if (req.user.role !== "ADMIN") {
+    if ((req as AuthRequest).user.role !== "ADMIN") {
       return res.status(403).json({ error: "Access denied" });
     }
 
@@ -44,7 +44,7 @@ export const verifyAdmin = (req: AuthRequest, res: Response, next: NextFunction)
  * @param {NextFunction} next
  */
 
-export const verifyUser = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const verifyUser: RequestHandler = async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
@@ -63,7 +63,7 @@ export const verifyUser = async (req: AuthRequest, res: Response, next: NextFunc
       return res.status(401).json({ error: "User not found" });
     }
 
-    req.user = user;
+    (req as AuthRequest).user = user;
     next();
   } catch (error) {
     return res.status(401).json({ error: "Invalid token" });
