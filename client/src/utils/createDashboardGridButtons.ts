@@ -12,19 +12,19 @@ export function createDashboardGridButtons(dispatchFunction: (state: DashboardSt
   return [
     {
       onClick: () => dispatchFunction(DashboardState.NEW_ORDER),
-      color: "green",
+      color: "p.300",
       icon: "fa-solid fa-plus",
       title: "new order",
     },
     {
       onClick: () => dispatchFunction(DashboardState.CHAT_ORDER),
-      color: "orange",
+      color: "p.200",
       icon: "fa-solid fa-microchip-ai",
       title: "order with chat",
     },
     {
       onClick: () => dispatchFunction(DashboardState.PAST_ORDERS),
-      color: "gray",
+      color: "p.400",
       icon: "fa-solid fa-list",
       title: "past orders",
     },
