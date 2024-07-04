@@ -2,6 +2,7 @@ import type { RootModel } from "@/store";
 import { createModel } from "@rematch/core";
 import { RegisterModelState } from "@/store/types";
 import { defaultRegisterModelState } from "@/store/constants";
+import { register } from "@/api/auth";
 
 export const registerModel = createModel<RootModel>()({
   state: { ...defaultRegisterModelState } as RegisterModelState,
@@ -36,7 +37,15 @@ export const registerModel = createModel<RootModel>()({
   }),
   effects: (dispatch) => ({
     async handleSignup([firstName, lastName, password, email, token]: [string, string, string, string, string]) {
-      // todo: handle signup
+      try {
+        const res = await register(firstName, lastName, password, email, token);
+        if (res?.data?.token) {
+          const token = res.data?.token;
+          dispatch.tokenModel.setIsAdmin(false);
+          dispatch.tokenModel.setToken(token);
+          this.clearState();
+        }
+      } catch {}
     },
   }),
 });

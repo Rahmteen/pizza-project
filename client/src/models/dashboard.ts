@@ -1,8 +1,10 @@
 import type { RootModel } from "@/store";
 import { createModel } from "@rematch/core";
 import { DashboardModelState, DashboardState, Order, PizzaIngredientValue, PizzaOrder, PizzaSize } from "@/store/types";
-import { defaultDashboardModelState } from "@/store/constants";
 import { setPizzaOrderProperty } from "@/utils/setPizzaOrderProperty";
+import { cleanPizzaOrder } from "@/utils/cleanPizzaOrder";
+import { defaultDashboardModelState } from "@/store/constants";
+import { createUserOrder, getPastUserOrders } from "@/api/user";
 
 export const dashboardModel = createModel<RootModel>()({
   state: {
@@ -46,8 +48,23 @@ export const dashboardModel = createModel<RootModel>()({
     selectChatlog: () => slice((state: DashboardModelState): string[] => state?.chatlog),
   }),
   effects: () => ({
-    async getPastUserOrders(token: string) {},
-    async placeUserOrder([token, cart]: [string, PizzaOrder]) {},
+    async getPastUserOrders(token: string) {
+      try {
+        const res = await getPastUserOrders(token);
+        if (res?.data) this.setPastOrders(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async placeUserOrder([token, cart]: [string, PizzaOrder]) {
+      try {
+        let cleanedCart = cleanPizzaOrder(cart);
+        const res = await createUserOrder(token, cleanedCart);
+        if (res.data) this.setCurrentState(DashboardState.SUCCESS);
+      } catch (error) {
+        console.log(error);
+      }
+    },
     // stretch
     async sendChatMessage([token, message]: [string, string]) {},
   }),

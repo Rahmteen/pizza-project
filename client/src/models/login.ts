@@ -2,6 +2,7 @@ import type { RootModel } from "@/store";
 import { LoginModelState } from "@/store/types";
 import { createModel } from "@rematch/core";
 import { defaultLoginModelState } from "@/store/constants";
+import { login } from "@/api/auth";
 
 export const loginModel = createModel<RootModel>()({
   state: { ...defaultLoginModelState } as LoginModelState,
@@ -20,9 +21,23 @@ export const loginModel = createModel<RootModel>()({
     selectIsLoading: () => slice((state: LoginModelState): boolean => state?.isLoading),
     selectIsError: () => slice((state: LoginModelState): boolean => state?.isError),
   }),
-  effects: () => ({
+  effects: (dispatch) => ({
     async handleLogin([email, password]: [string, string]) {
-      // todo
+      try {
+        const res = await login(email, password);
+        if (res.data) {
+          this.setIsLoading(false);
+          this.clearState();
+          dispatch.tokenModel.setIsAdmin(res.data?.isAdmin || false);
+          dispatch.tokenModel.setToken(res.data?.token);
+        }
+      } catch {
+        this.setIsLoading(false);
+        this.setIsError(true);
+        setTimeout(() => {
+          this.setIsError(false);
+        }, 2000);
+      }
     },
   }),
 });
