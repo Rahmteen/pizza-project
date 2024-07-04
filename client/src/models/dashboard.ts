@@ -13,6 +13,7 @@ export const dashboardModel = createModel<RootModel>()({
   reducers: {
     setCurrentState: (state: DashboardModelState, currentState: DashboardState) => ({ ...state, currentState }),
     setPastOrders: (state: DashboardModelState, pastOrders: Order[]) => ({ ...state, pastOrders }),
+    setIsLoading: (state: DashboardModelState, isLoading: boolean) => ({ ...state, isLoading }),
     addChatLog: (state: DashboardModelState, chat: string) => ({ ...state, chatlog: [...state.chatlog, chat] }),
     setCurrentMessage: (state: DashboardModelState, currentMessage: string) => ({ ...state, currentMessage }),
     setIsConfirmingOrder: (state: DashboardModelState, isConfirmingOrder: boolean) => ({ ...state, isConfirmingOrder }),
@@ -40,6 +41,7 @@ export const dashboardModel = createModel<RootModel>()({
   selectors: (slice) => ({
     selectState: () => slice((state: DashboardModelState): DashboardModelState => state),
     selectNewOrder: () => slice((state: DashboardModelState): PizzaOrder => state?.newOrder),
+    selectIsLoading: () => slice((state: DashboardModelState): boolean => state.isLoading),
     selectCurrentMessage: () => slice((state: DashboardModelState): string => state?.currentMessage),
     selectCurrentState: () => slice((state: DashboardModelState): DashboardState => state?.currentState),
     selectPastOrders: () => slice((state: DashboardModelState): Order[] => state?.pastOrders),
@@ -57,11 +59,14 @@ export const dashboardModel = createModel<RootModel>()({
       }
     },
     async placeUserOrder([token, cart]: [string, PizzaOrder]) {
+      this.setIsLoading(true);
       try {
         let cleanedCart = cleanPizzaOrder(cart);
         const res = await createUserOrder(token, cleanedCart);
         if (res.data) this.setCurrentState(DashboardState.SUCCESS);
+        this.setIsLoading(false);
       } catch (error) {
+        this.setIsLoading(false);
         console.log(error);
       }
     },

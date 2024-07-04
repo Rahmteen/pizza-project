@@ -91,6 +91,7 @@ export interface DashboardModelState {
   isConfirmingOrder: boolean;
   chatlog: string[];
   currentMessage: string;
+  isLoading: boolean,
 }
 
 /**

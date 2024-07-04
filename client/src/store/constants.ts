@@ -65,6 +65,7 @@ export const defaultDashboardModelState: DashboardModelState = {
   isConfirmingOrder: false,
   chatlog: [],
   currentMessage: "",
+  isLoading: false, 
 };
 
 /**

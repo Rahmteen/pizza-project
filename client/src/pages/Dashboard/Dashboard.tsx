@@ -24,7 +24,7 @@ const Dashboard: React.FC = (): React.ReactNode => {
 
   return (
     <DashboardPageLayout>
-      <DashboardHeader title={"Pizza Project"} subtitle={"Welcome to the"} icon={"fa-duotone fa-pizza"} />
+      <DashboardHeader title={"Pizza Project"} subtitle={"Welcome to the"} icon={"fa-solid fa-pizza"} />
       {currentDashboardState === DashboardState.DEFAULT && <DashboardLandingButtons />}
       {currentDashboardState === DashboardState.PAST_ORDERS && <DashboardPastOrders />}
       {currentDashboardState === DashboardState.CHAT_ORDER && <DashboardChatbot />}
