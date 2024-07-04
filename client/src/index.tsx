@@ -4,6 +4,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { Provider as RematchProvider } from "react-redux";
 
 import "@fontsource-variable/bricolage-grotesque";
+import "@fontsource-variable/inter";
 
 import { defaultTheme } from "@/theme";
 import { store } from "@/store/store";

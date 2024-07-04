@@ -12,6 +12,7 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@fontsource-variable/bricolage-grotesque": "^5.0.6",
+    "@fontsource-variable/inter": "^5.0.18",
     "@rematch/core": "^2.2.0",
     "@rematch/persist": "^2.1.2",
     "@rematch/select": "^3.1.2",
