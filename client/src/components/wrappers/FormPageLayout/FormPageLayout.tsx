@@ -1,5 +1,5 @@
 import { Flex, GridItem, Image, SimpleGrid, Stack } from "@chakra-ui/react";
-import BackgroundImage from "@/public/stock.jpg";
+import BackgroundImage from "@/public/stock.png";
 
 interface FormPageLayoutProps {
   children: React.ReactNode;
@@ -18,8 +18,16 @@ interface FormPageLayoutProps {
 const FormPageLayout = ({ children }: FormPageLayoutProps): React.ReactNode => {
   return (
     <SimpleGrid minH="100vh" columns={{ base: 1, lg: 2 }}>
-      <GridItem px={{ base: 10, lg: 32 }} as={Flex} alignItems={"center"} colSpan={1}>
-        <Stack minW="100%" rounded="lg" gap={5}>
+      <GridItem px={{ base: 6, lg: 32 }} as={Flex} alignItems={"center"} colSpan={1}>
+        <Stack
+          className="box-shadow-1"
+          minW="100%"
+          rounded="3xl"
+          bg="white"
+          py={{ base: 6, lg: 10 }}
+          px={{ base: 6, lg: 12 }}
+          gap={5}
+        >
           {children}
         </Stack>
       </GridItem>
