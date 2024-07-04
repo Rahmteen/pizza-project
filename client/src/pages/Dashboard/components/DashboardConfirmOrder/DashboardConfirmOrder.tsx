@@ -15,6 +15,7 @@ import { parsePizzaIngredientValue } from "@/utils/parsePizzaIngredientValue";
 
 const DashboardConfirmOrder: React.FC = (): React.ReactNode => {
   const dispatch = useDispatch<Dispatch>();
+  const token = useSelector(store.select.tokenModel.selectToken);
   const newOrder = useSelector(store.select.dashboardModel.selectNewOrder);
   return (
     <Stack>
@@ -40,7 +41,11 @@ const DashboardConfirmOrder: React.FC = (): React.ReactNode => {
           onClick={() => dispatch.dashboardModel.setIsConfirmingOrder(false)}
           children="Back"
         />
-        <Button colorScheme="green" children="Place order" onClick={() => /* todo */ {}} />
+        <Button
+          colorScheme="green"
+          children="Place order"
+          onClick={() => dispatch.dashboardModel.placeUserOrder([token, newOrder])}
+        />
       </Flex>
     </Stack>
   );
