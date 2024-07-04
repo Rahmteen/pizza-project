@@ -1,7 +1,20 @@
-import { store } from "@/store/store";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { store } from "@/store/store";
+
+interface TokenWrapper {
+  children: React.ReactNode;
+}
+
+/**
+ * @name TokenWrapper
+ * @type {React.FC}
+ *
+ * @description Auth wrapper for the application.
+ * handles verifying token status and navigation.
+ * @returns {Outlet}
+ */
 
 const TokenWrapper = () => {
   const { pathname } = useLocation();
