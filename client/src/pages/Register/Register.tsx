@@ -2,6 +2,8 @@ import FormPageLayout from "@/components/wrappers/FormPageLayout/FormPageLayout"
 import RegisterTitle from "@/pages/Register/components/RegisterTitle/RegisterTitle";
 import RegisterForm from "@/pages/Register/components/RegisterForm/RegisterForm";
 import RegisterButton from "@/pages/Register/components/RegisterButton/RegisterButton";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 /**
  * @name Register
@@ -11,11 +13,23 @@ import RegisterButton from "@/pages/Register/components/RegisterButton/RegisterB
  */
 
 const Register = () => {
+  const { search } = useLocation();
+  const navigate = useNavigate();
+  const [localToken, setLocalToken] = useState("");
+
+  useEffect(() => {
+    const parameters = new URLSearchParams(search);
+    const token = parameters.get("token");
+    if (token?.length) setLocalToken(token);
+    else {
+      navigate("/");
+    }
+  }, []);
   return (
     <FormPageLayout>
       <RegisterTitle />
       <RegisterForm />
-      <RegisterButton />
+      {localToken && <RegisterButton token={localToken} />}
     </FormPageLayout>
   );
 };

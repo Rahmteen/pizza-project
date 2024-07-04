@@ -3,14 +3,18 @@ import { Button } from "@chakra-ui/react";
 
 import { Dispatch, store } from "@/store/store";
 
+interface RegisterButtonProps {
+  token: string;
+}
+
 /**
  * @name RegisterButton
- * @type {React.FC}
+ * @type {React.FC<{RegisterButtonProps}>}
  * @description handle validation and api call for user registration.
  * @returns {React.ReactNode}
  */
 
-const RegisterButton: React.FC = (): React.ReactNode => {
+const RegisterButton: React.FC<RegisterButtonProps> = ({ token }: RegisterButtonProps): React.ReactNode => {
   const dispatch = useDispatch<Dispatch>();
   const email = useSelector(store.select.registerModel.selectEmail);
   const firstName = useSelector(store.select.registerModel.selectFirstName);
@@ -20,10 +24,11 @@ const RegisterButton: React.FC = (): React.ReactNode => {
 
   return (
     <Button
-      isDisabled={!password?.length || !email?.length || !firstName || !lastName || password !== confirmedPassword}
+      isDisabled={
+        !password?.length || !email?.length || !firstName || !lastName || password !== confirmedPassword || !token
+      }
       onClick={() => {
-        //todo: set up signup
-        dispatch.registerModel.handleSignup([firstName, lastName, password, email, ""]);
+        dispatch.registerModel.handleSignup([firstName, lastName, password, email, token]);
       }}
     >
       Register
