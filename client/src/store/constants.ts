@@ -90,4 +90,5 @@ export const defaultAdminModelState: AdminModelState = {
   allOrders: [],
   allLogs: [],
   currentState: AdminState.DEFAULT,
+  isLoading: false,
 };

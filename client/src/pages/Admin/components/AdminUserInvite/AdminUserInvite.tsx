@@ -16,6 +16,7 @@ const AdminUserInvite: React.FC = (): React.ReactNode => {
   const dispatch = useDispatch<Dispatch>();
   const token = useSelector(store.select.tokenModel.selectToken);
   const email = useSelector(store.select.adminModel.selectEmail);
+  const isLoading = useSelector(store.select.adminModel.selectIsLoading);
   return (
     <Stack>
       <BackButton onClick={() => dispatch.adminModel.setCurrentState(AdminState.DEFAULT)} />
@@ -30,6 +31,7 @@ const AdminUserInvite: React.FC = (): React.ReactNode => {
       <Flex mt={5} gap={2}>
         <Input onChange={(e) => dispatch.adminModel.setEmail(e.target.value)} placeholder="Enter email" />
         <Button
+          isLoading={isLoading}
           onClick={() => dispatch.adminModel.sendInviteEmail([email, token])}
           px={6}
           colorScheme="green"

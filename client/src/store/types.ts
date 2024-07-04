@@ -143,6 +143,7 @@ export interface AdminModelState {
   allOrders: Order[];
   allLogs: Log[];
   currentState: AdminState;
+  isLoading: boolean;
 }
 
 /**

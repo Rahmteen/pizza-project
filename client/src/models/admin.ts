@@ -7,6 +7,7 @@ import { defaultAdminModelState } from "@/store/constants";
 export const adminModel = createModel<RootModel>()({
   state: { ...defaultAdminModelState } as AdminModelState,
   reducers: {
+    setIsLoading: (state: AdminModelState, isLoading: boolean) => ({ ...state, isLoading }),
     setCurrentState: (state: AdminModelState, currentState: AdminState) => ({ ...state, currentState }),
     setEmail: (state: AdminModelState, email: string) => ({ ...state, email }),
     setAllOrders: (state: AdminModelState, allOrders: Order[]) => ({ ...state, allOrders }),
@@ -15,6 +16,7 @@ export const adminModel = createModel<RootModel>()({
     clearState: () => ({ ...defaultAdminModelState }),
   },
   selectors: (slice) => ({
+    selectIsLoading: () => slice((state: AdminModelState): boolean => state?.isLoading),
     selectEmail: () => slice((state: AdminModelState): string => state?.email),
     selectCurrentState: () => slice((state: AdminModelState): AdminState => state?.currentState),
     selectAllOrders: () => slice((state: AdminModelState): Order[] => state?.allOrders),
@@ -38,10 +40,13 @@ export const adminModel = createModel<RootModel>()({
       }
     },
     async sendInviteEmail([email, token]: [string, string]) {
+      this.setIsLoading(true);
       try {
         const res = await inviteUserByEmail(email, token);
         if (res.data) this.setCurrentState(AdminState.INVITE_SUCCESS);
+        this.setIsLoading(false);
       } catch (error) {
+        this.setIsLoading(false);
         console.log(error);
       }
     },
