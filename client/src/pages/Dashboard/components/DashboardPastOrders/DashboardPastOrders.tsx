@@ -10,9 +10,8 @@ import { useEffect } from "react";
 /**
  * @name DashboardPastOrdersForm
  * @type {React.FC}
- * @description handles mapping the current state and returnings values.
- * these mappings are used to render new order form elements for the user. This screen is visible
- * when the dashboard state is set to PAST_ORDERS.
+ * @description fetches past orders if they are not present and renders
+ * them in a list for the user.
  * @returns {React.ReactNode}
  */
 
