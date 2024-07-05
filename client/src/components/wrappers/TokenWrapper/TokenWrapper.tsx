@@ -13,10 +13,10 @@ interface TokenWrapper {
  *
  * @description Auth wrapper for the application.
  * handles verifying token status and navigation.
- * @returns {Outlet}
+ * @returns {React.ReactNode} <Outlet />
  */
 
-const TokenWrapper = () => {
+const TokenWrapper: React.FC = (): React.ReactNode => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const token = useSelector(store.select.tokenModel.selectToken);

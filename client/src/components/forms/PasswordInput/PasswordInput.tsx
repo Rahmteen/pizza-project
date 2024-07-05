@@ -14,7 +14,7 @@ interface PasswordInputProps {
  * @param onChange handles changes in input field
  * @param setIsShowing handles on/off for isShowing prop
  * @param placeholder modifies placeholder texts
-
+ * 
  * @description An input field strictly meant for handling passwords with 
  * options to show/hide sensitive characters.
  * @returns {React.ReactNode}

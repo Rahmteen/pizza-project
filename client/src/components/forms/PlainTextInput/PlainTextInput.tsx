@@ -10,7 +10,7 @@ interface PlainTextInputProps {
  * @type {React.FC<{ PlainTextInputProps }>}
  * @param onChange handles changes in input field
  * @param placeholder modifies placeholder texts
-
+ * 
  * @description A basic text input form to manage email, names and other
  * plain text user inputs.
  * @returns {React.ReactNode}
