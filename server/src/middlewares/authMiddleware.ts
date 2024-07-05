@@ -23,7 +23,7 @@ export const verifyAdmin: RequestHandler = (req, res, next) => {
   const token = authHeader.split(" ")[1];
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload & { role: string };
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
     (req as AuthRequest).user = decoded as User;
 
     if ((req as AuthRequest).user.role !== "ADMIN") {
@@ -54,7 +54,7 @@ export const verifyUser: RequestHandler = async (req, res, next) => {
   const token = authHeader.split(" ")[1];
 
   try {
-    const decoded: any = jwt.verify(token, process.env.JWT_SECRET!);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
     const user = await prisma.user.findUnique({
       where: { id: decoded.userId },
     });
