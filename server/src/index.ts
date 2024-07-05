@@ -7,7 +7,8 @@ dotenv.config();
 // routes
 import authRoutes from "./routes/authRoutes";
 import adminRoutes from "./routes/adminRoutes";
-import userRoutes from './routes/userRoutes';
+import userRoutes from "./routes/userRoutes";
+import chatbotRoutes from "./routes/chatbotRoutes";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -25,7 +26,8 @@ app.use(express.json());
 
 app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes);
-app.use('/user', userRoutes)
+app.use("/user", userRoutes);
+app.use("/chatbot", chatbotRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
