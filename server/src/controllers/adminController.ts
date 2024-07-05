@@ -74,6 +74,7 @@ export const getAllOrders = async (req: Request, res: Response) => {
   try {
     const orders = await prisma.order.findMany({
       orderBy: { createdAt: "desc" },
+      // include: { user: { select: { id: true, firstName: true, lastName: true, email: true } } },
     });
     await createLog("ADMIN", "An ADMIN requested all orders on the platform");
     res.json(orders);
