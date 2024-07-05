@@ -1,5 +1,5 @@
 import { DateTime } from "luxon";
-import { Badge, Box, Flex, GridItem, SimpleGrid, Stack, Text } from "@chakra-ui/react";
+import { Badge, Flex, GridItem, SimpleGrid, Stack, Text } from "@chakra-ui/react";
 import { Order } from "@/store/types";
 import { parsePizzaIngredientValue } from "@/utils/parsePizzaIngredientValue";
 import { parsePizzaSize } from "@/utils/parsePizzaSize";
@@ -29,10 +29,10 @@ const OrderItem: React.FC<OrderItemProps> = ({ order }: OrderItemProps): React.R
       </GridItem>
       <GridItem colSpan={3}>
         <Stack>
-          {Object.entries(order?.cart).map(([item, value]) => {
+          {Object.entries(order?.cart).map(([item, value], index) => {
             if (item !== "size")
               return (
-                <Flex direction={{ base: "column", lg: "row" }} alignItems={{ base: "start", lg: "center" }} gap={2}>
+                <Flex key={item + value + index} direction={{ base: "column", lg: "row" }} alignItems={{ base: "start", lg: "center" }} gap={2}>
                   <Badge textAlign={'center'} minW="10ch" colorScheme={parsePortionBadgeColor(parsePizzaIngredientValue(value) || "")}>
                     {parsePizzaIngredientValue(value)}
                   </Badge>

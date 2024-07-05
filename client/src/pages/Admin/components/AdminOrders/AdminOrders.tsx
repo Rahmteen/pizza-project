@@ -35,7 +35,7 @@ const AdminOrders: React.FC = (): React.ReactNode => {
       </Stack>
       <OrderHeader />
       {allOrder?.map((order) => (
-        <OrderItem order={order} />
+        <OrderItem key={order.id} order={order} />
       ))}
     </Stack>
   );

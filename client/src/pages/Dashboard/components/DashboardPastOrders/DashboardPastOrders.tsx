@@ -40,7 +40,7 @@ const DashboardPastOrders: React.FC = (): React.ReactNode => {
       </Stack>
       <OrderHeader />
       {pastOrders?.map((order) => (
-        <OrderItem order={order} />
+        <OrderItem key={order.id} order={order} />
       ))}
     </Stack>
   );

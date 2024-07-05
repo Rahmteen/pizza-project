@@ -50,7 +50,7 @@ const AdminLogs = () => {
         </GridItem>
       </SimpleGrid>
       {allLogs?.map((log) => (
-        <SimpleGrid columns={6}>
+        <SimpleGrid key={log.id} columns={6}>
           <GridItem colSpan={1}>{badgeMapping[log?.type]}</GridItem>
           <GridItem colSpan={3}>
             <Text fontFamily={"bricolage"}>{log.description}</Text>

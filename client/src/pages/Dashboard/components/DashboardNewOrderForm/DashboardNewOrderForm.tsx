@@ -24,11 +24,11 @@ const DashboardNewOrderForm: React.FC = (): React.ReactNode => {
       <Text fontSize={"lg"} mb={3} fontFamily={"bricolage"} children="1. Choose your pizza size, sauce and cheese:" />
       {pizzaSizeProps && <PizzaSizeRadioGroup {...pizzaSizeProps} />}
       {sauceAndCheeseProps?.map((props) => (
-        <PizzaIngredientRadioGroup {...props} />
+        <PizzaIngredientRadioGroup key={props.name} {...props} />
       ))}
       <Text fontSize={"lg"} my={3} fontFamily={"bricolage"} children="2. Choose your toppings:" />
       {toppingsProps?.map((props) => (
-        <PizzaIngredientRadioGroup {...props} />
+        <PizzaIngredientRadioGroup key={props.name} {...props} />
       ))}
       <Flex mt={5} justifyContent={"space-between"}>
         <Button variant={"outline"} onClick={() => dispatch.dashboardModel.clearState()} children="Back" />

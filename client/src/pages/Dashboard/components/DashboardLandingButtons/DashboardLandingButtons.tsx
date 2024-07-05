@@ -19,6 +19,7 @@ const DashboardLandingButtons: React.FC = (): React.ReactNode => {
     <SimpleGrid gap={4} columns={{ base: 1, lg: 3 }}>
       {createDashboardGridButtons((state) => dispatch.dashboardModel.setCurrentState(state))?.map((gridButton) => (
         <LargeGridButton
+          key={gridButton.title}
           onClick={gridButton.onClick}
           color={gridButton.color}
           icon={gridButton.icon}
