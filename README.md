@@ -28,7 +28,6 @@ User {
   createdAt: Date;
   role: string;
   validated: Boolean;
-  orders: Order[];
 }
 ```
 
